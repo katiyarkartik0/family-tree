@@ -1,43 +1,24 @@
-import { cloneDeep } from "lodash";
-import { data } from "./FamilyData/data";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleVisibility } from "./store/slices/dataSlice";
+import "./App.css"
 
 function App() {
-  const recursivelyManipulate = (uniqueId, arrayOfSiblings) => {
-    for (const individual of arrayOfSiblings) {
-      console.log(individual)
-      if (individual.uid === uniqueId) {
-        const isVisible = individual.levelVisibility;
-        individual.levelVisibility = !isVisible;
-        return;
-      } else {
-        if(individual.children.length>0){
-          return recursivelyManipulate(uniqueId, individual.children);
-        }
-      }
-    }
-    arrayOfSiblings.forEach((individual, index) => {
-      console.log(individual);
-    });
-  };
-  const toggleVisibility = (uniqueId) => {
-    const cloneData = cloneDeep(data);
-    recursivelyManipulate(uniqueId, cloneData);
-    console.log(cloneData);
-  };
+  const dispatch = useDispatch();
+  const currentData = useSelector((state) => state.data);
   const recursiveDisplay = (data = []) => {
     return data.map((individual, index) => {
       return (
-        <>
-          <button onClick={() => toggleVisibility(individual.uid)}>
+        <div className="family">
+          <button onClick={() => dispatch(toggleVisibility(individual.uid))}>
             {individual.name}
           </button>
           <br></br>
           {individual.levelVisibility && recursiveDisplay(individual.children)}
-        </>
+        </div>
       );
     });
   };
-  return <div className="App">{recursiveDisplay(data)}</div>;
+  return <div className="App">{recursiveDisplay(currentData)}</div>;
 }
 
 export default App;
