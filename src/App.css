@@ -1,7 +1,16 @@
 .family {
-  border: solid black;
   padding: 10px;
 }
 .clicked {
-  background-color: darkgrey;
+  background-color: rgb(194, 190, 190);
+}
+.parent{
+    display: flex;
+    align-items: center;
+}
+.familyDetails{
+    width: 70%;
+}
+.App{
+    width: 30%;
 }

@@ -1,39 +1,64 @@
 export const data = [
   {
     uid: "0",
-    name: "great grandfather",
     levelVisibility: true,
-    clicked: false,
-    children: [
-      {
-        uid: "0.1",
-        name: "son1",
-        levelVisibility: true,
-        clicked: false,
-        children: [
-          {
-            uid: "0.1.1",
+    personalInformation: {
+      name: "great grandfather",
+      children: [
+        {
+          uid: "0.1",
+          levelVisibility: true,
+          personalInformation: {
             name: "son1",
-            levelVisibility: false,
-            clicked: false,
-            children: [],
+            children: [
+              {
+                uid: "0.1.1",
+                levelVisibility: false,
+                personalInformation: {
+                  name: "son1",
+                  children: [],
+                  spouse: "",
+                  location: "",
+                  birthYear: "",
+                  presentAddress: "",
+                },
+              },
+              {
+                uid: "0.1.2",
+                levelVisibility: false,
+                personalInformation: {
+                  name: "son2",
+                  children: [],
+                  spouse: "",
+                  location: "",
+                  birthYear: "",
+                  presentAddress: "",
+                },
+              },
+            ],
+            spouse: "",
+            location: "",
+            birthYear: "",
+            presentAddress: "",
           },
-          {
-            uid: "0.1.2",
-            name: "son2",
-            levelVisibility: false,
-            clicked: false,
+        },
+        {
+          uid: "0.2",
+          levelVisibility: false,
+          personalInformation: {
+            name: "daughter1",
             children: [],
+            spouse: "",
+            location: "",
+            birthYear: "",
+            presentAddress: "",
           },
-        ],
-      },
-      {
-        uid: "0.2",
-        name: "daughter1",
-        levelVisibility: false,
-        clicked: false,
-        children: [],
-      },
-    ],
+        },
+      ],
+      spouse: "",
+      location: "",
+      birthYear: "",
+      presentAddress: "",
+    },
   },
 ];

@@ -1,24 +1,32 @@
 import { cloneDeep } from "lodash";
+const defaultObj = {};
 
-export let clickedIndividual;
+export let selectedIndividual = defaultObj;
 
-export const updateData = ({ uniqueId, data }) => {
+export const updateData = ({
+  selectedIndividualUid,
+  data,
+  newFamilyMember = "",
+}) => {
   const recursivelyManipulate = ({ arrayOfSiblings }) => {
-    for (const individual of arrayOfSiblings) {
-      console.log(individual);
-      if (individual.uid === uniqueId) {
-        const isVisible = individual.levelVisibility;
-        individual.levelVisibility = !isVisible;
-        individual.clicked = true;
-        clickedIndividual = cloneDeep(individual);
-      } else {
-        individual.clicked = false;
+    for (const currentIndividual of arrayOfSiblings) {
+      const { uid: currentIndividualUid, levelVisibility } = currentIndividual;
+      if (currentIndividualUid === selectedIndividualUid) {
+        const isVisible = levelVisibility;
+        if (newFamilyMember) {
+          currentIndividual.personalInformation.children.push(newFamilyMember);
+          selectedIndividual = cloneDeep(newFamilyMember);
+          currentIndividual.levelVisibility = true;
+        } else {
+          selectedIndividual = cloneDeep(currentIndividual);
+          currentIndividual.levelVisibility = !isVisible;
+        }
       }
-      if (individual.children.length > 0) {
-        recursivelyManipulate({ arrayOfSiblings: individual.children });
-      }
+      recursivelyManipulate({
+        arrayOfSiblings: currentIndividual.personalInformation.children,
+      });
     }
   };
   recursivelyManipulate({ arrayOfSiblings: data });
-  return { updatedData: data, clickedIndividual };
+  return { updatedData: data, selectedIndividual };
 };
