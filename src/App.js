@@ -1,24 +1,41 @@
-import { useDispatch, useSelector } from "react-redux";
-import { toggleVisibility } from "./store/slices/dataSlice";
-import "./App.css"
+import "./App.css";
+import { useEffect, useState } from "react";
+import { clickedIndividual } from "./helpers/recursiveHelpers";
+import FamilyMember from "./Components/Buttons/FamilyMember";
+import { useSelector } from "react-redux";
+import { getCurrentFamilyTree } from "./helpers/selectorGetters";
+import AddFamily from "./Components/Buttons/AddFamily";
 
 function App() {
-  const dispatch = useDispatch();
-  const currentData = useSelector((state) => state.data);
+  const [currentIndividual, setCurrentIndividual] = useState(clickedIndividual);
+  const familyTreeData = useSelector(getCurrentFamilyTree);
+
+  const individual = clickedIndividual;
+
+  useEffect(() => {
+    setCurrentIndividual(individual);
+  }, [individual]);
+
+  console.log(currentIndividual);
+
   const recursiveDisplay = (data = []) => {
     return data.map((individual, index) => {
       return (
         <div className="family">
-          <button onClick={() => dispatch(toggleVisibility(individual.uid))}>
-            {individual.name}
-          </button>
-          <br></br>
+          <FamilyMember individual={individual} />
           {individual.levelVisibility && recursiveDisplay(individual.children)}
         </div>
       );
     });
   };
-  return <div className="App">{recursiveDisplay(currentData)}</div>;
+  return (
+    <>
+      <div className="App">{recursiveDisplay(familyTreeData)}</div>
+      <div>
+        <AddFamily />
+      </div>
+    </>
+  );
 }
 
 export default App;

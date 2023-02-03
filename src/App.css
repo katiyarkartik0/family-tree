@@ -1,4 +1,7 @@
-.family{
-    border: solid black;
-    padding: 10px;
+.family {
+  border: solid black;
+  padding: 10px;
+}
+.clicked {
+  background-color: darkgrey;
 }

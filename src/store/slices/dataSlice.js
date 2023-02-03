@@ -1,6 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { cloneDeep } from "lodash";
-import { recursivelyManipulate } from "../../helpers/recursiveHelpers";
+import { updateData } from "../../helpers/recursiveHelpers";
 const _ = require("lodash");
 
 const dataSlice = createSlice({
@@ -38,8 +38,8 @@ const dataSlice = createSlice({
     toggleVisibility(state, action) {
       const clone = cloneDeep(current(state));
       const uniqueId = action.payload;
-      recursivelyManipulate(uniqueId, clone);
-      return clone;
+      const { updatedData } = updateData({ uniqueId, data: clone });
+      return updatedData;
     },
   },
 });
