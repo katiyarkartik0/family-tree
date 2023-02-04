@@ -1,17 +1,19 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { selectedIndividual } from "./helpers/recursiveHelpers";
-import FamilyMember from "./Components/Buttons/FamilyMember";
+import FamilyMember from "./Components/Buttons/FamilyMember/FamilyMember";
 import { useSelector } from "react-redux";
 import { getCurrentFamilyTree } from "./helpers/selectorGetters";
-import AddFamily from "./Components/Buttons/AddFamily";
+import AddFamily from "./Components/Buttons/AddFamily/AddFamily";
 import FamilyDetails from "./Components/FamilyDetails/FamilyDetails";
+import AddJSON from "./Components/Buttons/AddJSON/AddJson";
 
 function App() {
   const familyTreeData = useSelector(getCurrentFamilyTree);
   console.log(familyTreeData);
 
-  const isAddFamilyButtonDisabled = Object.keys(selectedIndividual).length === 0;
+  const isAddFamilyButtonDisabled =
+    Object.keys(selectedIndividual).length === 0;
 
   const recursiveDisplay = (data = []) => {
     return data.map((individual, index) => {
@@ -40,6 +42,7 @@ function App() {
       </div>
       <div>
         <AddFamily isDisabled={isAddFamilyButtonDisabled} />
+        <AddJSON />
       </div>
       {isAddFamilyButtonDisabled && <p>please select a folder to add family</p>}
     </>

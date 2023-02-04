@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { selectedIndividual } from "../../helpers/recursiveHelpers";
-import { toggleVisibility } from "../../store/slices/dataSlice";
+import { selectedIndividual } from "../../../helpers/recursiveHelpers";
+import { toggleVisibility } from "../../../store/slices/dataSlice";
 import FolderIcon from "@mui/icons-material/Folder";
 import "./Button.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";

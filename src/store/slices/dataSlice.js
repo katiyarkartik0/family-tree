@@ -11,7 +11,10 @@ const dataSlice = createSlice({
     toggleVisibility(state, action) {
       const clone = cloneDeep(current(state));
       const selectedIndividualUid = action.payload;
-      const { updatedData } = updateData({ selectedIndividualUid, data: clone });
+      const { updatedData } = updateData({
+        selectedIndividualUid,
+        data: clone,
+      });
       return updatedData;
     },
     addNewFamilyMember(state, action) {
@@ -24,8 +27,12 @@ const dataSlice = createSlice({
       });
       return updatedData;
     },
+    toggleImportJson(state, action) {
+      return action.payload;
+    },
   },
 });
 
-export const { toggleVisibility, addNewFamilyMember } = dataSlice.actions;
+export const { toggleVisibility, addNewFamilyMember, toggleImportJson } =
+  dataSlice.actions;
 export { dataSlice };

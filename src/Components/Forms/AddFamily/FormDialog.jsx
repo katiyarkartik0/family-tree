@@ -7,8 +7,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { addNewFamilyMember } from "../../store/slices/dataSlice";
-import { selectedIndividual } from "../../helpers/recursiveHelpers";
+import { addNewFamilyMember } from "../../../store/slices/dataSlice";
+import { selectedIndividual } from "../../../helpers/recursiveHelpers";
 
 const defaultString = "";
 
@@ -80,6 +80,7 @@ const FormDialog = ({ open, handleClose }) => {
           id="name"
           label="Spouse"
           fullWidth
+          multiline
           variant="standard"
           value={familyMemberSpouse}
           onChange={(e) => setFamilyMemberSpouse(e.target.value)}

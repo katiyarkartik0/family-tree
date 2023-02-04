@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import FormDialog from "../Forms/FormDialog";
+import FormDialog from "../../Forms/AddFamily/FormDialog";
 
 export default function AddFamily({isDisabled}) {
   const [open, setOpen] = React.useState(false);
