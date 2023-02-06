@@ -1,10 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import FormDialog from "../../Forms/AddFamily/FormDialog";
+import AddJsonFormDialog from "../../Forms/AddJSON/AddJsonFormDialog";
 
-export default function AddFamily({isDisabled}) {
+export default function ImportJSON() {
   const [open, setOpen] = React.useState(false);
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,13 +15,10 @@ export default function AddFamily({isDisabled}) {
 
   return (
     <div style={{padding: "10px"}}>
-      <Button fullWidth disabled={isDisabled} variant="outlined" onClick={handleClickOpen}>
-        Add Family
+      <Button fullWidth variant="outlined" onClick={handleClickOpen}>
+        Import JSON
       </Button>
-      <FormDialog
-        open={open}
-        handleClose={handleClose}
-      />
+      <AddJsonFormDialog open={open} handleClose={handleClose} />
     </div>
   );
 }

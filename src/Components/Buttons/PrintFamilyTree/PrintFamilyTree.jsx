@@ -1,8 +1,8 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import AddJsonFormDialog from "../../Forms/AddJSON/AddJsonFormDialog";
+import TreeVizualizer from "./TreeVizualizer";
 
-export default function AddJSON() {
+export default function PrintFamilyTree() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -14,11 +14,11 @@ export default function AddJSON() {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Import JSON
+    <div style={{padding: "10px"}}>
+      <Button fullWidth variant="outlined" onClick={handleClickOpen}>
+        Print Family Tree
       </Button>
-      <AddJsonFormDialog open={open} handleClose={handleClose} />
+      <TreeVizualizer open={open} handleClose={handleClose} />
     </div>
   );
 }

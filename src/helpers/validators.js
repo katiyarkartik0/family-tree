@@ -30,7 +30,7 @@ export const isJsonValid = (json) => {
     }
   };
   try {
-    if (isString(json) && json.length() === 0) {
+    if (isString(json) && json.length === 0) {
       throw Error();
     }
     parsedStringJson = eval(json);
