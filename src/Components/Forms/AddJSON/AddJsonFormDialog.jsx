@@ -6,12 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import { data } from "../../../FamilyData/data";
-import { toggleImportJson } from "../../../store/slices/dataSlice";
 import { useDispatch } from "react-redux";
-import { isJsonValid } from "../../../helpers/validators";
 
-const defaultImportForJson = data;
+import { defaultData } from "defaultData/defaultData";
+import { toggleImportJson } from "store/slices/dataSlice";
+import { isJsonValid } from "helpers/validators";
+
+const defaultImportForJson = defaultData;
 
 const AddJsonFormDialog = ({ open, handleClose }) => {
   const dispatch = useDispatch();

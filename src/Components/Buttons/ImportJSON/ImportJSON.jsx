@@ -1,6 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import AddJsonFormDialog from "../../Forms/AddJSON/AddJsonFormDialog";
+
+import AddJsonFormDialog from "components/forms/addJSON/AddJsonFormDialog";
+
+import "components/buttons/Buttons.css"
 
 export default function ImportJSON() {
   const [open, setOpen] = React.useState(false);
@@ -14,7 +17,7 @@ export default function ImportJSON() {
   };
 
   return (
-    <div style={{padding: "10px"}}>
+    <div className="bottomLeftButtons">
       <Button fullWidth variant="outlined" onClick={handleClickOpen}>
         Import JSON
       </Button>

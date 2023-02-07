@@ -4,13 +4,25 @@
 .clicked {
   background-color: rgb(194, 190, 190);
 }
-.parent{
-    display: flex;
-    align-items: center;
+.App {
+  display: flex;
+  align-items: center;
 }
-.familyDetails{
-    width: 70%;
+.familyDetails {
+  width: 70%;
 }
-.App{
-    width: 30%;
+.treeStructure {
+  width: 30vw;
+  height: 60vh;
+  overflow: auto;
+  border: solid grey;
+  border-radius: 2%;
+}
+.clickables{
+  width: 30vw;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.leftContainer{
+  padding: 10px;
 }

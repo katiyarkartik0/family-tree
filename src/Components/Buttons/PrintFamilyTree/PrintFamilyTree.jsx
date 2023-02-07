@@ -1,6 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import TreeVizualizer from "./TreeVizualizer";
+
+import TreeVizualizer from "components/buttons/printFamilyTree/TreeVizualizer";
+
+import "components/buttons/Buttons.css";
 
 export default function PrintFamilyTree() {
   const [open, setOpen] = React.useState(false);
@@ -14,7 +17,7 @@ export default function PrintFamilyTree() {
   };
 
   return (
-    <div style={{padding: "10px"}}>
+    <div className="bottomLeftButtons">
       <Button fullWidth variant="outlined" onClick={handleClickOpen}>
         Print Family Tree
       </Button>

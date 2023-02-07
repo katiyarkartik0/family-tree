@@ -1,13 +1,16 @@
-import "./App.css";
-import { selectedIndividual } from "./helpers/recursiveHelpers";
-import FamilyMember from "./Components/Buttons/FamilyMember/FamilyMember";
 import { useSelector } from "react-redux";
-import { getCurrentFamilyTree } from "./helpers/selectorGetters";
-import AddFamily from "./Components/Buttons/AddFamily/AddFamily";
-import FamilyDetails from "./Components/FamilyDetails/FamilyDetails";
-import ImportJSON from "./Components/Buttons/ImportJSON/ImportJSON";
-import ExportJSON from "./Components/Buttons/ExportJSON/ExportJSON";
-import PrintFamilyTree from "./Components/Buttons/PrintFamilyTree/PrintFamilyTree";
+
+import FamilyMember from "components/buttons/familyMember/FamilyMember";
+import AddFamily from "components/buttons/addFamily/AddFamily";
+import ImportJSON from "components/buttons/importJSON/ImportJSON";
+import ExportJSON from "components/buttons/exportJSON/ExportJSON";
+import PrintFamilyTree from "components/buttons/printFamilyTree/PrintFamilyTree";
+import FamilyDetails from "components/familyDetails/FamilyDetails";
+
+import { selectedIndividual } from "helpers/recursiveHelpers";
+import { getCurrentFamilyTree } from "helpers/selectorGetters";
+
+import "App.css";
 
 function App() {
   const familyTreeData = useSelector(getCurrentFamilyTree);
@@ -34,29 +37,12 @@ function App() {
   };
   return (
     <>
-      <div className="parent">
-        <div>
-          <div
-            className="App"
-            style={{
-              width: "30vw",
-              height: "60vh",
-              overflow: "auto",
-              border:"solid grey",
-              borderRadius:"2%"
-            }}
-          >
+      <div className="App">
+        <div className="leftContainer">
+          <div className="treeStructure">
             {recursiveDisplay(familyTreeData)}
           </div>
-          <div
-            style={{
-              width: "30vw",
-              display: "grid",
-              gridTemplateColumns: "auto auto",
-              gridTemplateRows: "auto auto",
-              padding: "10px",
-            }}
-          >
+          <div className="clickables">
             <AddFamily isDisabled={isAddFamilyButtonDisabled} />
             <ImportJSON />
             <ExportJSON />

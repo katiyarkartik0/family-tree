@@ -4,12 +4,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import { getCurrentFamilyTree } from "../../../helpers/selectorGetters";
-import { selectedIndividual } from "../../../helpers/recursiveHelpers";
 import { useSelector } from "react-redux";
+
+import { getCurrentFamilyTree } from "helpers/selectorGetters";
+import { selectedIndividual } from "helpers/recursiveHelpers";
 
 const TreeVizualizer = ({ open, handleClose }) => {
   const familyTreeData = useSelector(getCurrentFamilyTree);
+
+  const isIndividualSelected = Object.keys(selectedIndividual).length > 0;
 
   const renderTree = ({
     treeData,
@@ -57,10 +60,15 @@ const TreeVizualizer = ({ open, handleClose }) => {
     <Dialog fullScreen open={open} onClose={handleClose}>
       <DialogTitle>Family Tree</DialogTitle>
       <DialogContent>
-        <h1>Family Tree at the selected level</h1>
-        <div>
-          {renderTree({ treeData: familyTreeData, selectedIndividual })}
-        </div>
+        {isIndividualSelected && (
+          <>
+            <h1>Family Tree at the selected level</h1>
+            <div>
+              {renderTree({ treeData: familyTreeData, selectedIndividual })}
+            </div>
+          </>
+        )}
+
         <br></br>
         <h1>Whole Family Tree</h1>
         <div>{renderTree({ treeData: familyTreeData })}</div>

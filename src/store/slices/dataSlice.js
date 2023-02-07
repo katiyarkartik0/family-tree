@@ -1,12 +1,12 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { cloneDeep } from "lodash";
-import { data } from "../../FamilyData/data";
+import { defaultData } from "../../defaultData/defaultData";
 import { updateData } from "../../helpers/recursiveHelpers";
 const _ = require("lodash");
 
 const dataSlice = createSlice({
   name: "data",
-  initialState: data,
+  initialState: defaultData,
   reducers: {
     toggleVisibility(state, action) {
       const clone = cloneDeep(current(state));

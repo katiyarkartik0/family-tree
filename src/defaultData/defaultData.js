@@ -1,4 +1,4 @@
-export const data = [
+export const defaultData = [
   {
     uid: "0",
     levelVisibility: true,
@@ -21,6 +21,9 @@ export const data = [
                   location: "",
                   birthYear: "",
                   presentAddress: "",
+                  familyPhotos: [
+                    "https://thumbs.dreamstime.com/b/happy-family-four-smiling-together-outdoors-41938163.jpg",
+                  ],
                 },
               },
               {
@@ -33,6 +36,9 @@ export const data = [
                   location: "",
                   birthYear: "",
                   presentAddress: "",
+                  familyPhotos: [
+                    "https://thumbs.dreamstime.com/b/happy-family-four-smiling-together-outdoors-41938163.jpg",
+                  ],
                 },
               },
             ],
@@ -40,6 +46,10 @@ export const data = [
             location: "",
             birthYear: "",
             presentAddress: "",
+            familyPhotos: [
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR37xh-hwCffkeF0LPBC2zXlEjJPu_2q26G8JkWUUvR&s",
+              "https://thumbs.dreamstime.com/b/happy-family-four-smiling-together-outdoors-41938163.jpg",
+            ],
           },
         },
         {
@@ -52,6 +62,9 @@ export const data = [
             location: "",
             birthYear: "",
             presentAddress: "",
+            familyPhotos: [
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR37xh-hwCffkeF0LPBC2zXlEjJPu_2q26G8JkWUUvR&s",
+            ],
           },
         },
       ],
@@ -59,6 +72,9 @@ export const data = [
       location: "",
       birthYear: "",
       presentAddress: "",
+      familyPhotos: [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR37xh-hwCffkeF0LPBC2zXlEjJPu_2q26G8JkWUUvR&s",
+      ],
     },
   },
 ];

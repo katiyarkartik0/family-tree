@@ -1,0 +1,13 @@
+.buttonStyle {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+}
+.parentButton {
+  padding: 4px;
+}
+.folderIcon {
+  color: rgb(209, 185, 10);
+  font-size: 20;
+}

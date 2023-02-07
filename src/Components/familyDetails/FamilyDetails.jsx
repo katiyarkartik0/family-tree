@@ -1,24 +1,50 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { selectedIndividual } from "../../helpers/recursiveHelpers";
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+import { selectedIndividual } from "helpers/recursiveHelpers";
 
 const card = ({ personalInformation = {} }) => {
-  const { name, spouse, location, birthYear, presentAddress } =
-    personalInformation;
+  const {
+    name,
+    spouse,
+    location,
+    birthYear,
+    presentAddress,
+    familyPhotos = [],
+  } = personalInformation;
+
+  const renderFamilyPhotos = (familyPhotos = []) => {
+    let photos = [];
+    const numberOfRenders = Math.max(2, familyPhotos.length) - 1;
+    for (let i = 0; i <= numberOfRenders; i++) {
+      photos.push(
+        <div style={{ padding: "4px" }}>
+          <div
+            style={{
+              border: "solid black",
+              width: "200px",
+              height: "220px",
+              padding: "7.5px",
+            }}
+          >
+            {familyPhotos.length > i ? (
+              <img
+                src={familyPhotos[i]}
+                alt="family"
+                style={{ width: "200px", height: "220px" }}
+              ></img>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+      );
+    }
+    return photos;
+  };
+
   return (
     <React.Fragment>
       <div style={{ width: "100vw", height: "100vh" }}>
@@ -40,15 +66,10 @@ const card = ({ personalInformation = {} }) => {
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             family photo
           </Typography>
-          <Typography variant="body2">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
+          <div style={{ display: "flex" }}>
+            {renderFamilyPhotos(familyPhotos)}
+          </div>
         </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </div>
     </React.Fragment>
   );
@@ -64,8 +85,8 @@ export default function FamilyDetails() {
   }, [individual]);
 
   return (
-    <Box sx={{ minWidth: 275 }} >
-      <Card  variant="outlined">{card(currentDisplayIndividual)}</Card>
+    <Box sx={{ minWidth: 275 }}>
+      <Card variant="outlined">{card(currentDisplayIndividual)}</Card>
     </Box>
   );
 }

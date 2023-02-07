@@ -1,8 +1,11 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { getCurrentFamilyTree } from "../../../helpers/selectorGetters";
 import { useSelector } from "react-redux";
 import { Container, Segment } from "semantic-ui-react";
+
+import { getCurrentFamilyTree } from "helpers/selectorGetters";
+
+import "components/buttons/Buttons.css"
 
 export default function ExportJSON() {
   const familyTreeData = useSelector(getCurrentFamilyTree);
@@ -21,7 +24,7 @@ export default function ExportJSON() {
   return (
     <Container>
       <Segment>
-        <div style={{padding: "10px"}}>
+        <div className="bottomLeftButtons">
           <Button fullWidth variant="outlined" onClick={downloadJsonIntoTextFile}>
             Export JSON
           </Button>

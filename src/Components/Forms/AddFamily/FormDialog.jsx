@@ -7,31 +7,60 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
-import { addNewFamilyMember } from "../../../store/slices/dataSlice";
-import { selectedIndividual } from "../../../helpers/recursiveHelpers";
+import ReactDOM from "react-dom";
+
+import AddImageSrc from "components/forms/addFamily/AddImageSrc";
+
+import { addNewFamilyMember } from "store/slices/dataSlice";
+import { selectedIndividual } from "helpers/recursiveHelpers";
 
 const defaultString = "";
+const defaultObj = {};
 
 const FormDialog = ({ open, handleClose }) => {
   const dispatch = useDispatch();
+
   const individual = selectedIndividual;
+
   const [parent, setParent] = useState(selectedIndividual);
+
   const { uid: parentUid, personalInformation = {} } = parent;
+
   const { name: parentName, children: familyMemberSiblings = [] } =
     personalInformation;
+
   const familyMemberUid = `${parentUid}.${familyMemberSiblings.length + 1}`;
+
   const [familyMemberName, setFamilyMemberName] = useState(defaultString);
   const [familyMemberSpouse, setFamilyMemberSpouse] = useState(defaultString);
+
   const [familyMemberLocation, setFamilyMemberLocation] =
     useState(defaultString);
+
   const [familyMemberBirthYear, setFamilyMemberBirthYear] =
     useState(defaultString);
+
   const [familyMemberPresentAddress, setFamilyMemberPresentAddress] =
     useState(defaultString);
+
+  const [familyPhotoSrc, setFamilyPhotoSrc] = useState(defaultObj);
+
+  const [numberOfFamilyPhotos, setNumberOfFamilyPhotos] = useState(0);
 
   useEffect(() => {
     setParent(individual);
   }, [individual]);
+
+  const refreshAllStates = () =>
+    ReactDOM.unstable_batchedUpdates(() => {
+      setFamilyMemberName(defaultString);
+      setFamilyMemberSpouse(defaultString);
+      setFamilyMemberLocation(defaultString);
+      setFamilyMemberBirthYear(defaultString);
+      setFamilyMemberPresentAddress(defaultString);
+      setFamilyPhotoSrc(defaultObj);
+      setNumberOfFamilyPhotos(0);
+    });
 
   const addFamilyMemberHandler = () => {
     const familyMember = {
@@ -44,6 +73,7 @@ const FormDialog = ({ open, handleClose }) => {
         birthYear: familyMemberBirthYear,
         presentAddress: familyMemberPresentAddress,
         children: [],
+        familyPhotos: Object.values(familyPhotoSrc),
       },
     };
     dispatch(
@@ -52,7 +82,23 @@ const FormDialog = ({ open, handleClose }) => {
         newFamilyMember: familyMember,
       })
     );
+    refreshAllStates();
     handleClose();
+  };
+
+  const handleCancel = () => {
+    handleClose();
+    refreshAllStates();
+  };
+
+  const renderFamilyPhotosField = (frequencyOfFamilyPhotos) => {
+    let fields = [];
+    for (let i = 0; i < frequencyOfFamilyPhotos; i++) {
+      fields.push(
+        <AddImageSrc index={i} setFamilyPhotoSrc={setFamilyPhotoSrc} />
+      );
+    }
+    return fields;
   };
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -77,7 +123,7 @@ const FormDialog = ({ open, handleClose }) => {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="spouse"
           label="Spouse"
           fullWidth
           multiline
@@ -88,7 +134,7 @@ const FormDialog = ({ open, handleClose }) => {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="location"
           label="Location"
           fullWidth
           variant="standard"
@@ -98,7 +144,7 @@ const FormDialog = ({ open, handleClose }) => {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="birthYear"
           label="Birth Year"
           fullWidth
           variant="standard"
@@ -108,16 +154,26 @@ const FormDialog = ({ open, handleClose }) => {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="presentAddress"
           label="Present Address"
           fullWidth
           variant="standard"
           value={familyMemberPresentAddress}
           onChange={(e) => setFamilyMemberPresentAddress(e.target.value)}
         />
+        {renderFamilyPhotosField(numberOfFamilyPhotos)}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          onClick={() =>
+            setNumberOfFamilyPhotos(
+              (prevNumberOfFamilyPhotos) => prevNumberOfFamilyPhotos + 1
+            )
+          }
+        >
+          Add family photo filed
+        </Button>
+        <Button onClick={handleCancel}>Cancel</Button>
         <Button onClick={addFamilyMemberHandler}>Add Family Member</Button>
       </DialogActions>
     </Dialog>

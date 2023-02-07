@@ -1,6 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import FormDialog from "../../Forms/AddFamily/FormDialog";
+
+import FormDialog from "components/forms/addFamily/FormDialog";
+
+import "components/buttons/Buttons.css"
 
 export default function AddFamily({isDisabled}) {
   const [open, setOpen] = React.useState(false);
@@ -15,7 +18,7 @@ export default function AddFamily({isDisabled}) {
   };
 
   return (
-    <div style={{padding: "10px"}}>
+    <div className="bottomLeftButtons">
       <Button fullWidth disabled={isDisabled} variant="outlined" onClick={handleClickOpen}>
         Add Family
       </Button>
