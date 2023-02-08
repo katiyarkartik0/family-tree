@@ -43,18 +43,26 @@ function App() {
             {recursiveDisplay(familyTreeData)}
           </div>
           <div className="clickables">
-            <AddFamily isDisabled={isAddFamilyButtonDisabled} />
             <ImportJSON />
+            <AddFamily isDisabled={isAddFamilyButtonDisabled} />
             <ExportJSON />
             <PrintFamilyTree />
           </div>
         </div>
         <div className="familyDetails">
-          <FamilyDetails selectedIndividual={selectedIndividual} />
+          {isAddFamilyButtonDisabled ? (
+            <h1>
+              please select a folder to
+              <ol>
+                <li>add family</li>
+                <li>view the respective family details</li>
+              </ol>
+            </h1>
+          ) : (
+            <FamilyDetails selectedIndividual={selectedIndividual} />
+          )}
         </div>
       </div>
-
-      {isAddFamilyButtonDisabled && <p>please select a folder to add family</p>}
     </>
   );
 }

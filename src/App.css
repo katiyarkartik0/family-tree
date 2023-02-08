@@ -8,9 +8,6 @@
   display: flex;
   align-items: center;
 }
-.familyDetails {
-  width: 70%;
-}
 .treeStructure {
   width: 30vw;
   height: 60vh;
@@ -18,11 +15,11 @@
   border: solid grey;
   border-radius: 2%;
 }
-.clickables{
+.clickables {
   width: 30vw;
   display: grid;
   grid-template-columns: auto auto;
 }
-.leftContainer{
+.leftContainer {
   padding: 10px;
 }
