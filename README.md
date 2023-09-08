@@ -40,10 +40,8 @@ We welcome feedback, bug reports, and contributions from the community. If you e
 
 Happy family tree building!
 
-![Family Tree UI](link_to_image_here)
-
 ---
 
-[Live Demo](#) | [Report Issue](https://github.com/your-username/family-registry-app/issues)
+[Live Demo](https://katiyarkartik0.github.io/family-tree/)
 
 
